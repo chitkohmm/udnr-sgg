@@ -1,0 +1,20 @@
+{
+    "@@locale": "en",
+    "signIn": "Sign In",
+    "@signIn": {
+        "description": "Sign In"
+    },
+    "email": "Email",
+    "@email": {
+        "description": "Email"
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Password"
+    },
+    "signInBtn": "Sign In",
+    "@singInBtn": {
+        "description": "Sign In"
+    }
+
+}
