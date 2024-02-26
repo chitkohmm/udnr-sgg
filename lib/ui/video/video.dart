@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:libms_flutter/common/methods/common_methods.dart';
 import 'package:libms_flutter/data/blocs/videos_bloc/videos_bloc.dart';
+import 'package:libms_flutter/domain/storage_utils.dart';
 import 'package:libms_flutter/ui/share/empty_widget.dart';
 import 'package:libms_flutter/ui/video/video_detail.dart';
 
@@ -26,6 +27,8 @@ class _VideoState extends State<Video> {
 
   @override
   Widget build(BuildContext context) {
+    var sci = int.parse(StorageUtils.getString('sci'));
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -47,7 +50,7 @@ class _VideoState extends State<Video> {
             );
           }
           if (state is VideosLoadedState) {
-            if (state.videoResponse.data![0].videos!.isEmpty) {
+            if (state.videoResponse.data![sci - 1].videos?.isEmpty ?? true) {
               return const EmptyWidget(
                 text: "There are no videos",
               );
