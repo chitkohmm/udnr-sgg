@@ -43,7 +43,8 @@ class Login extends StatelessWidget {
                       height: context.wp(20),
                     ),
                     Image.asset(
-                      "assets/images/app_logo.png",
+                      // "assets/images/udnr_logo.png",
+                      "assets/images/ucs_dawei.png",
                       height: context.hp(100) / 4,
                     ),
                     SizedBox(

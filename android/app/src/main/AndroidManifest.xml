@@ -8,9 +8,10 @@
 <!-- For apps with targetSDK=31 (Android 12) -->
 <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
 
-
+    <!-- UDNR : UDNR-SGG Lib-ms -->
+    <!-- UCS Dawei : UCS-Dawei Lib-ms -->
    <application
-        android:label="UDNR-SGG Lib-ms"
+        android:label="UCS-Dawei Lib-ms"
         android:name="${applicationName}"
         android:usesCleartextTraffic="true"
        android:icon="@mipmap/ic_launcher">

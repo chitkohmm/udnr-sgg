@@ -67,7 +67,8 @@ class _SplashState extends State<Splash> {
                               height: context.wp(20),
                             ),
                             Image.asset(
-                              "assets/images/app_logo.png",
+                              // "assets/images/udnr_logo.png",
+                              "assets/images/ucs_dawei.png",
                               height: context.wp(35),
                             ),
                             SizedBox(
