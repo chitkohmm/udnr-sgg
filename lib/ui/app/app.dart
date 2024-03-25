@@ -62,8 +62,7 @@ class _AppState extends State<App> {
       DeviceOrientation.portraitUp,
     ]);
     timer = Timer(const Duration(seconds: 2), () {
-      // precacheImage(const AssetImage("assets/images/udnr_logo.png"), context);
-      precacheImage(const AssetImage("assets/images/ucs_dawei.png"), context);
+      precacheImage(const AssetImage("assets/images/udnr_logo.png"), context);
       precacheImage(const AssetImage("assets/images/shape.png"), context);
       precacheImage(const AssetImage("assets/images/video cover.png"), context);
       precacheImage(const AssetImage("assets/images/studying.png"), context);
