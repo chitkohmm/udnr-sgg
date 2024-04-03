@@ -21,13 +21,13 @@ class SqliteClient {
   static Database? database;
 
   Future<void> _init() async {
-    String path = join(await getDatabasesPath(), 'libms.db');
+    String path = join(await getDatabasesPath(), 'udnr.db');
     var exist = await databaseExists(path);
     if (!exist) {
       try {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
-      ByteData data = await rootBundle.load("assets/db/libms.db");
+      ByteData data = await rootBundle.load("assets/db/udnr.db");
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);

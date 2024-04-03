@@ -109,13 +109,13 @@ class _BookDetailState extends State<BookDetail> {
               color: Colors.grey.shade700,
             ),
           ),
-          title: Tooltip(
-            message: widget.book.bookname.toString().toUpperCase(),
-            child: Text(
-              widget.book.bookname.toString().toUpperCase(),
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.w700),
-            ),
+          title: Text(
+            widget.book.bookname.toString().toUpperCase(),
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: kDeviceWidth(context) * 0.04),
+            maxLines: 2,
           ),
         ),
         body: SafeArea(
@@ -419,8 +419,7 @@ class _BookDetailState extends State<BookDetail> {
                     setState(() {
                       isDownloading = true;
                     });
-                    // final response = await manager.downloadFileSimple(state.orderResponse., null);
-                    // final directory = await getApplicationDocumentsDirectory();
+                    Fluttertoast.showToast(msg: "Downloading...");
 
                     var file =
                         await _downloadFile('${widget.book.bookname}.pdf');
@@ -456,9 +455,7 @@ class _BookDetailState extends State<BookDetail> {
                       setState(() {
                         isDownloading = true;
                       });
-                      // final response = await manager.downloadFileSimple(state.orderResponse., null);
-                      // final directory =
-                      //     await getApplicationDocumentsDirectory();
+                      Fluttertoast.showToast(msg: "Downloading...");
 
                       var file =
                           await _downloadFile('${widget.book.bookname}.pdf');
