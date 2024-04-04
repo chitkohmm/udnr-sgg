@@ -8,12 +8,12 @@ class BookCategories {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data?.add(Data.fromJson(v));
+        data?.add(BookCategoryData.fromJson(v));
       });
     }
   }
-  List<Data>? data;
-BookCategories copyWith({  List<Data>? data,
+  List<BookCategoryData>? data;
+BookCategories copyWith({  List<BookCategoryData>? data,
 }) => BookCategories(  data: data ?? this.data,
 );
   Map<String, dynamic> toJson() {
@@ -30,13 +30,13 @@ BookCategories copyWith({  List<Data>? data,
 /// category : "PHP"
 /// image : {"original_url":"https://lib-ms.hmmdemo.net/storage/9/63e49e63e30f0_php.png"}
 
-class Data {
-  Data({
+class BookCategoryData {
+  BookCategoryData({
       this.id, 
       this.category, 
       this.image,});
 
-  Data.fromJson(dynamic json) {
+  BookCategoryData.fromJson(dynamic json) {
     id = json['id'];
     category = json['category'];
     image = json['image'] != null ? Image.fromJson(json['image']) : null;
@@ -44,10 +44,10 @@ class Data {
   num? id;
   String? category;
   Image? image;
-Data copyWith({  num? id,
+BookCategoryData copyWith({  num? id,
   String? category,
   Image? image,
-}) => Data(  id: id ?? this.id,
+}) => BookCategoryData(  id: id ?? this.id,
   category: category ?? this.category,
   image: image ?? this.image,
 );
