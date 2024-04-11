@@ -1,14 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:libms_flutter/domain/storage_utils.dart';
 import 'package:video_player/video_player.dart';
-
-import '../app/app.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class VideoApp extends StatefulWidget {
-  const VideoApp({super.key, required this.videoLink});
+  const VideoApp({super.key, required this.videoLink, required this.videoId});
 
   final String videoLink;
+  final String videoId;
 
   @override
   State<VideoApp> createState() => _VideoAppState();
@@ -121,7 +123,10 @@ class _VideoAppState extends State<VideoApp> {
                   alignment: Alignment.bottomCenter,
                   children: [
                     VideoPlayer(_controller),
-                    _ControlsOverlay(controller: _controller),
+                    _ControlsOverlay(
+                      controller: _controller,
+                      videoId: widget.videoId,
+                    ),
                     VideoProgressIndicator(_controller, allowScrubbing: true),
                   ],
                 ),
@@ -138,7 +143,7 @@ class _VideoAppState extends State<VideoApp> {
 }
 
 class _ControlsOverlay extends StatelessWidget {
-  const _ControlsOverlay({required this.controller});
+  const _ControlsOverlay({required this.controller, required this.videoId});
 
   static const List<double> _examplePlaybackRates = <double>[
     0.5,
@@ -148,6 +153,32 @@ class _ControlsOverlay extends StatelessWidget {
   ];
 
   final VideoPlayerController controller;
+  final String videoId;
+
+  Future<void> _postViewCount() async {
+    final Dio dio = Dio();
+    dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90));
+
+    await Future<void>.delayed(const Duration(milliseconds: 250));
+
+    await dio.post(
+      "${StorageUtils.getString("url")}/api/v1/register-view",
+      options: Options(headers: {
+        "Authorization": 'Bearer ${StorageUtils.getString("login_user")}'
+      }),
+      data: {
+        "user_id": int.parse(StorageUtils.getString("user_id")),
+        "video_id": videoId
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,6 +208,7 @@ class _ControlsOverlay extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.value.isPlaying ? controller.pause() : controller.play();
+            _postViewCount();
           },
         ),
         Align(

@@ -115,7 +115,7 @@ class _VideoState extends State<Video> {
                                                       MaterialPageRoute(
                                                         builder: (context) =>
                                                             VideoApp(
-                                                          videoLink: videoLink,
+                                                          videoLink: videoLink, videoId: '${videoItem?.id}',
                                                         ),
                                                       ),
                                                     );
